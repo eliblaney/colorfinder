@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react'
+import {
+	CssBaseline,
+	withStyles
+} from '@material-ui/core'
+import { Route } from 'react-router-dom';
+import Header from './components/Header'
+import Home from './pages/Home'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const styles = theme => ({
+	main: {
+		padding: theme.spacing(3),
+		[theme.breakpoints.down('xs')]: {
+			padding: theme.spacing(2),
+		},
+		backgroundColor: '#282c34',
+		minHeight: '100vh',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 'calc(10px + 2vmin)',
+		color: 'white',
+	},
+})
 
-export default App;
+const app = ({classes}) => (
+	<Fragment>
+		<CssBaseline />
+		<Header />
+		<main className={classes.main}>
+			<Route exact path="/" component={Home} />
+		</main>
+	</Fragment>
+)
+
+export default withStyles(styles)(app)
