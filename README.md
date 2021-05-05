@@ -2,6 +2,10 @@
 
 ColorFinder is an app by Eli Blaney as a final project for CSC 581 at Creighton University.
 
+## Purpose
+
+ColorFinder derives the dominant colors in given images to generate color palettes. For anyone that intends to use images to find matching colors, this app is a good fit.
+
 ## Requirements
 
 This app requires Node to run. If you have node installed, then you can download the project's dependencies by typing:
