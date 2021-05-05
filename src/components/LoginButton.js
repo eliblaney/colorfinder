@@ -11,24 +11,34 @@ import firebase from 'firebase/app'
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
 
 class LoginButton extends Component {
-  state = {
-    menuAnchorEl: null,
-  }
+	state = {
+		menuAnchorEl: null,
+	}
 
-  handleMenuOpen = event => this.setState({ menuAnchorEl: event.currentTarget });
-  handleMenuClose = () => this.setState({ menuAnchorEl: null });
+	handleMenuOpen = event => this.setState({ menuAnchorEl: event.currentTarget });
+	handleMenuClose = () => this.setState({ menuAnchorEl: null });
 
 	login = async () => {
 		const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-		firebase.auth().signInWithPopup(googleAuthProvider)
+		await firebase.auth().signInWithPopup(googleAuthProvider)
+		this.props.setLoggedIn(true)
 	}
 
-  render() {
-	  const { menuAnchorEl } = this.state
-	  const menuPosition = {
-		  vertical: 'top',
-		  horizontal: 'right',
-	  };
+	logout = async () => {
+		await firebase.auth().signOut()
+		this.props.setLoggedIn(false)
+	}
+
+	async componentDidMount() {
+		firebase.auth().onAuthStateChanged(user => this.props.setLoggedIn(!!user))
+	}
+
+	render() {
+		const { menuAnchorEl } = this.state
+		const menuPosition = {
+			vertical: 'top',
+			horizontal: 'right',
+		};
 
 	  return (
 	  <FirebaseAuthConsumer>
@@ -49,7 +59,7 @@ class LoginButton extends Component {
 					  open={!!menuAnchorEl}
 					  onClose={this.handleMenuClose}
 					>
-					  <MenuItem onClick={() => firebase.auth().signOut()}>
+					  <MenuItem onClick={this.logout}>
 						<ListItemText
 						  primary="Logout"
 						  secondary={user && user.email}

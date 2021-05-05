@@ -12,6 +12,8 @@
 /build
 
 # misc
+/public/uploads
+*.swp
 .DS_Store
 .env
 .env.local
@@ -25,3 +27,4 @@ yarn-error.log*
 
 *.sqlite
 serviceAccountKey.json
+vision.json
