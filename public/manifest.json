@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Color Finder",
+  "name": "Color Finder",
   "icons": [
     {
       "src": "favicon.ico",
