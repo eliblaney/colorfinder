@@ -19,3 +19,5 @@ To build the app to a production-ready state, type the following command:
 To serve the app (port 3001 by default), type the following command:
 
 	npm start
+
+Then, you may navigate to http://localhost:3001/ to use the app.
